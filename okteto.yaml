@@ -3,6 +3,6 @@ deploy:
   commands:
   - name: Prepare Env
     command: |
-      echo $GIT_SSH_PEM | base64 -d > /tmp/ssh.pem
-      chmod 400 /tmp/ssh.pem
-      ssh -T -v -i /tmp/ssh.pem git@github.com
+      echo $GIT_SSH_PEM | base64 -d > /tmp/ssh_rsa
+      chmod 400 /tmp/ssh_rsa
+      ssh -T -v -i /tmp/ssh_rsa git@github.com
