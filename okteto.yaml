@@ -3,6 +3,7 @@ deploy:
   commands:
   - name: Prepare Env
     command: |
+      ls /tmp/.ssh
       rm -rf k8s-docs
       echo $GIT_SSH_PEM | base64 -d > ssh.pem
       echo /tmp/ssh.pem
