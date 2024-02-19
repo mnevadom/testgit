@@ -1,0 +1,12 @@
+deploy:
+  remote: true
+  commands:
+  - name: Prepare Env
+    command: |
+      rm -rf k8s-docs
+      echo $GIT_SSH_PEM | base64 -d > /tmp/ssh.pem
+      chmod 400 /tmp/ssh.pem
+      git config --global core.sshCommand "ssh -i /tmp/ssh.pem"
+      git clone git@github.com:mnevadom/k8s-docs.git
+      git config --global --unset core.sshCommand "ssh -i /tmp/ssh.pem"
+      rm -f /tmp/ssh.pem
