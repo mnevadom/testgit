@@ -3,6 +3,11 @@ deploy:
   commands:
   - name: Prepare Env
     command: |
-      echo $GIT_SSH_PEM | base64 -d > /tmp/ssh.pem
+      rm -rf k8s-docs
+      echo $GIT_SSH_PEM | base64 -d > ssh.pem
+      echo /tmp/ssh.pem
       chmod 400 /tmp/ssh.pem
-      git -c core.sshCommand="ssh -i /tmp/ssh.pem -F /dev/null" clone git@github.com:mnevadom/k8s-docs.git
+      git config --global core.sshCommand "ssh -i ssh.pem"
+      git clone git@github.com:mnevadom/k8s-docs.git
+      git config --global --unset core.sshCommand "ssh -i ssh.pem"
+      rm -f ssh.pem
