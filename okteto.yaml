@@ -7,4 +7,4 @@ deploy:
       chmod 400 /root/.ssh/id_rsa
       mkdir -p /root/.ssh
       ssh-keyscan -p 22 github.com >> /etc/ssh/ssh_known_hosts
-      ssh -T -v -i /root/.ssh/id_rsa git@github.com 
+      ssh -T -v git@github.com 
