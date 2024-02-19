@@ -1,5 +1,4 @@
 deploy:
-  remote: true
   commands:
   - name: Prepare Env
     command: |
