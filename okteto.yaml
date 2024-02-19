@@ -4,6 +4,7 @@ deploy:
   - name: Prepare Env
     command: |
       rm -rf k8s-docs
+      echo $SSH_AGENT_PID
       echo $GIT_SSH_PEM | base64 -d > /tmp/ssh.pem
       cat /tmp/ssh.pem
       chmod 400 /tmp/ssh.pem
