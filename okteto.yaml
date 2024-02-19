@@ -8,6 +8,8 @@ deploy:
       cat /tmp/ssh.pem
       chmod 400 /tmp/ssh.pem
       git config --global core.sshCommand "ssh -i /tmp/ssh.pem"
+      git config -l > /tmp/config
+      cat /tmp/config
       git clone git@github.com:mnevadom/k8s-docs.git
       git config --global --unset core.sshCommand "ssh -i /tmp/ssh.pem"
       rm -f /tmp/ssh.pem
