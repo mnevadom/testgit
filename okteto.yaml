@@ -3,7 +3,8 @@ deploy:
   commands:
   - name: Prepare Env
     command: |
-      echo $GIT_SSH_PEM | base64 -d > /tmp/ssh_rsa
-      chmod 400 /tmp/ssh_rsa
-      ssh-keyscan -p 22 github.com >> ~/.ssh/known_hosts
-      ssh -T -v -i /tmp/ssh_rsa -o StrictHostKeyChecking=no git@github.com 
+      echo $GIT_SSH_PEM | base64 -d > /root/.ssh/id_rsa
+      chmod 400 /root/.ssh/id_rsa
+      mkdir -p /root/.ssh
+      ssh-keyscan -p 22 github.com >> /root/.ssh/known_hosts
+      ssh -T -v -i /root/.ssh/id_rsa git@github.com 
