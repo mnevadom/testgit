@@ -1,5 +1,8 @@
 deploy:
+  remote: true
   commands:
   - name: Prepare Env
     command: |
-      git clone git@github.com:jpf-okteto/prueba.git
+      echo $GIT_SSH_PEM | base64 -d > /tmp/ssh.pem
+      chmod 400 /tmp/ssh.pem
+      ssh -T -v -i /tmp/ssh.pem git@github.com
