@@ -5,4 +5,5 @@ deploy:
     command: |
       echo $GIT_SSH_PEM | base64 -d > /tmp/ssh_rsa
       chmod 400 /tmp/ssh_rsa
+      ssh-keyscan -p 22 github.com >> ~/.ssh/known_hosts
       ssh -T -v -i /tmp/ssh_rsa git@github.com
